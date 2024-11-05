@@ -11,12 +11,11 @@
 
 
 ## Галерея
-<img src="https://github.com/ivn-srg/prtf-vodimobile/blob/main/IMG_3759.png" width="200">
-![Изображение 1](https://github.com/ivn-srg/prtf-vodimobile/blob/main/IMG_3759.png)
-![Изображение 2](https://github.com/ivn-srg/prtf-vodimobile/blob/main/IMG_3760.png)
-![Изображение 3](https://github.com/ivn-srg/prtf-vodimobile/blob/main/IMG_3761.png)
-![Изображение 4](https://github.com/ivn-srg/prtf-vodimobile/blob/main/IMG_3762.png)
-![Изображение 5](https://github.com/ivn-srg/prtf-vodimobile/blob/main/IMG_3763.png)
+<img src="https://github.com/ivn-srg/prtf-vodimobile/blob/main/IMG_3759.png alt="main screen"" width="250">
+<img src="https://github.com/ivn-srg/prtf-vodimobile/blob/main/IMG_3760.png alt="orders screen"" width="250">
+<img src="https://github.com/ivn-srg/prtf-vodimobile/blob/main/IMG_3761.png alt="auto list screen"" width="250">
+<img src="https://github.com/ivn-srg/prtf-vodimobile/blob/main/IMG_3762.png alt="make reservation screen"" width="250">
+<img src="https://github.com/ivn-srg/prtf-vodimobile/blob/main/IMG_3763.png alt="profile screen"" width="250">
 
 ## Моя роль в проекте
 
@@ -45,7 +44,7 @@
 
 Применена архитектурные паттерны Clean Architecture, MVVM, ориентированные на разделение проекта по функциональным блокам для улучшения масштабируемости и удобства поддержки и тестирования.
 
-![Изображение 7]()
+<img src="https://github.com/ivn-srg/prtf-vodimobile/blob/main/IMG_3764.png alt="xcode code structure screen"" width="250">
 
 
 ## Принципы и инструменты разработки
