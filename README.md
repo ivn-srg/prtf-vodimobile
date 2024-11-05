@@ -11,15 +11,7 @@
 
 
 ## Галерея
-| <img src="https://github.com/ivn-srg/prtf-vodimobile/blob/main/IMG_3759.png" alt="main screen" width="250"> | <img src="https://github.com/ivn-srg/prtf-vodimobile/blob/main/IMG_3760.png" alt="orders screen" width="250"> |
-| <img src="https://github.com/ivn-srg/prtf-vodimobile/blob/main/IMG_3761.png" alt="auto list screen" width="250"> | <img src="https://github.com/ivn-srg/prtf-vodimobile/blob/main/IMG_3762.png" alt="make reservation screen" width="250"> |
-| <img src="https://github.com/ivn-srg/prtf-vodimobile/blob/main/IMG_3763.png" alt="profile screen" width="250"> |  |
-
-<img src="https://github.com/ivn-srg/prtf-vodimobile/blob/main/IMG_3759.png" alt="main screen" width="250">
-<img src="https://github.com/ivn-srg/prtf-vodimobile/blob/main/IMG_3760.png" alt="orders screen" width="250">
-<img src="https://github.com/ivn-srg/prtf-vodimobile/blob/main/IMG_3761.png" alt="auto list screen" width="250">
-<img src="https://github.com/ivn-srg/prtf-vodimobile/blob/main/IMG_3762.png" alt="make reservation screen" width="250">
-<img src="https://github.com/ivn-srg/prtf-vodimobile/blob/main/IMG_3763.png" alt="profile screen" width="250">
+<img src="https://github.com/ivn-srg/prtf-vodimobile/blob/main/IMG_3759.png" alt="main screen" width="250"><img src="https://github.com/ivn-srg/prtf-vodimobile/blob/main/IMG_3760.png" alt="orders screen" width="250"><img src="https://github.com/ivn-srg/prtf-vodimobile/blob/main/IMG_3761.png" alt="auto list screen" width="250"><img src="https://github.com/ivn-srg/prtf-vodimobile/blob/main/IMG_3762.png" alt="make reservation screen" width="250"><img src="https://github.com/ivn-srg/prtf-vodimobile/blob/main/IMG_3763.png" alt="profile screen" width="250">
 
 ## Моя роль в проекте
 
