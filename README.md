@@ -11,11 +11,12 @@
 
 
 ## Галерея
-<img src="https://github.com/ivn-srg/prtf-vodimobile/blob/main/IMG_3759.png alt="main screen"" width="250">
-<img src="https://github.com/ivn-srg/prtf-vodimobile/blob/main/IMG_3760.png alt="orders screen"" width="250">
-<img src="https://github.com/ivn-srg/prtf-vodimobile/blob/main/IMG_3761.png alt="auto list screen"" width="250">
-<img src="https://github.com/ivn-srg/prtf-vodimobile/blob/main/IMG_3762.png alt="make reservation screen"" width="250">
-<img src="https://github.com/ivn-srg/prtf-vodimobile/blob/main/IMG_3763.png alt="profile screen"" width="250">
+
+<img src="https://github.com/ivn-srg/prtf-vodimobile/blob/main/IMG_3759.png" alt="main screen" width="250">
+<img src="https://github.com/ivn-srg/prtf-vodimobile/blob/main/IMG_3760.png" alt="orders screen" width="250">
+<img src="https://github.com/ivn-srg/prtf-vodimobile/blob/main/IMG_3761.png" alt="auto list screen" width="250">
+<img src="https://github.com/ivn-srg/prtf-vodimobile/blob/main/IMG_3762.png" alt="make reservation screen" width="250">
+<img src="https://github.com/ivn-srg/prtf-vodimobile/blob/main/IMG_3763.png" alt="profile screen" width="250">
 
 ## Моя роль в проекте
 
@@ -44,7 +45,7 @@
 
 Применена архитектурные паттерны Clean Architecture, MVVM, ориентированные на разделение проекта по функциональным блокам для улучшения масштабируемости и удобства поддержки и тестирования.
 
-<img src="https://github.com/ivn-srg/prtf-vodimobile/blob/main/IMG_3764.png alt="xcode code structure screen"" width="250">
+<img src="https://github.com/ivn-srg/prtf-vodimobile/blob/main/IMG_3764.png" alt="xcode code structure screen" width="250">
 
 
 ## Принципы и инструменты разработки
@@ -217,171 +218,171 @@
   <summary>Список авто по категориям</summary>
   ```swift
     struct AutoListView: View {
-      @Environment(\.calendar) var calendar
-      @Binding var selectedAuto: Car
-      @Binding var showModalReservation: Bool
-      @Binding var showSignSuggestModal: Bool
-      @Binding var showDatePicker: Bool
-      @State private var selectedTab: Int = 0
-      @State private var showModalCard: Bool = false
-      @State private var dragOffset: CGSize = .zero
-      @ObservedObject private var viewModel: AutoListViewModel
-  
-      init(
-          selectedAuto: Binding<Car>,
-          showModalReservation: Binding<Bool>,
-          showSignSuggestModal: Binding<Bool>,
-          showDatePicker: Binding<Bool>,
-          dateRange: Binding<ClosedRange<Date>?>
-      ) {
-          self._selectedAuto = selectedAuto
-          self._showModalReservation = showModalReservation
-          self._showSignSuggestModal = showSignSuggestModal
-          self._showDatePicker = showDatePicker
-          self.viewModel = .init(dateRange: dateRange)
-      }
-  
-      var body: some View {
-          VStack {
-              if viewModel.dateRange != nil {
-                  ButtonLikeDateField(
-                      showDatePicker: $showDatePicker,
-                      dateRange: viewModel.dateRange
-                  )
-                  .padding(.horizontal, horizontalPadding)
-              }
-              TabBarView(index: $selectedTab)
-                  .background(
-                      RoundedRectangle(cornerRadius: 20)
-                          .fill(Color(R.color.background))
-                          .ignoresSafeArea(.all)
-                  )
-  
-              TabView(selection: $selectedTab) {
-                  switch selectedTab {
-                  case 1:
-                      ScrollableAutoListView(
-                          carList: viewModel.filterCars(by: .economy),
-                          selectedAuto: $selectedAuto,
-                          showModalCard: $showModalCard,
-                          showModalReservation: $showModalReservation,
-                          showSignSuggestModal: $showSignSuggestModal,
-                          refreshAction: viewModel.fetchCars
-                      )
-                  case 2:
-                      ScrollableAutoListView(
-                          carList: viewModel.filterCars(by: .comfort),
-                          selectedAuto: $selectedAuto,
-                          showModalCard: $showModalCard,
-                          showModalReservation: $showModalReservation,
-                          showSignSuggestModal: $showSignSuggestModal,
-                          refreshAction: viewModel.fetchCars
-                      )
-                  case 3:
-                      ScrollableAutoListView(
-                          carList: viewModel.filterCars(by: .premium),
-                          selectedAuto: $selectedAuto,
-                          showModalCard: $showModalCard,
-                          showModalReservation: $showModalReservation,
-                          showSignSuggestModal: $showSignSuggestModal,
-                          refreshAction: viewModel.fetchCars
-                      )
-                  case 4:
-                      ScrollableAutoListView(
-                          carList: viewModel.filterCars(by: .sedans),
-                          selectedAuto: $selectedAuto,
-                          showModalCard: $showModalCard,
-                          showModalReservation: $showModalReservation,
-                          showSignSuggestModal: $showSignSuggestModal,
-                          refreshAction: viewModel.fetchCars
-                      )
-                  case 5:
-                      ScrollableAutoListView(
-                          carList: viewModel.filterCars(by: .jeeps),
-                          selectedAuto: $selectedAuto,
-                          showModalCard: $showModalCard,
-                          showModalReservation: $showModalReservation,
-                          showSignSuggestModal: $showSignSuggestModal,
-                          refreshAction: viewModel.fetchCars
-                      )
-                  default:
-                      ScrollableAutoListView(
-                          carList: $viewModel.listOfAllCar,
-                          selectedAuto: $selectedAuto,
-                          showModalCard: $showModalCard,
-                          showModalReservation: $showModalReservation,
-                          showSignSuggestModal: $showSignSuggestModal,
-                          refreshAction: viewModel.fetchCars
-                      )
-                  }
-              }
-              .ignoresSafeArea(.container)
-              .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-              .gesture(
-                  DragGesture()
-                      .onEnded { value in
-                          let horizontalAmount = value.translation.width
-                          let verticalAmount = value.translation.height
-  
-                          if abs(horizontalAmount) > abs(verticalAmount) {
-                              if horizontalAmount < -50 {
-                                  withAnimation {
-                                      if selectedTab < AutoListType.allCases.count - 1 {
-                                          selectedTab += 1
-                                      }
-                                  }
-                              } else if horizontalAmount > 50 {
-                                  withAnimation {
-                                      if selectedTab > 0 {
-                                          selectedTab -= 1
-                                      }
-                                  }
-                              }
-                          }
-                      }
-              )
-              .sheet(isPresented: $showModalCard) {
-                  ModalAutoView(
-                      carModel: $selectedAuto,
-                      showModalView: $showModalCard,
-                      showSignSuggestModal: $showSignSuggestModal,
-                      showModalReservation: $showModalReservation
-                  )
-              }
-          }
-          .onAppear {
-              Task {
-                  await viewModel.fetchCars()
-              }
-          }
-          .loadingOverlay(isLoading: $viewModel.isLoading)
-          .background(Color(R.color.bgContainer))
-          .navigationBarBackButtonHidden()
-          .toolbar {
-              CustomToolbar(title: R.string.localizable.carParkScreenTitle)
-          }
-      }
-  
-      func formatDateRange() -> String {
-          guard let dateRange = viewModel.dateRange else {
-              return R.string.localizable.dateTextFieldPlaceholder()
-          }
-  
-          let formatter = DateFormatter()
-          formatter.dateFormat = "dd MMMM yyyy"
-  
-          let startDate = formatter.string(from: dateRange.lowerBound)
-          let endDate = formatter.string(from: dateRange.upperBound)
-  
-          if startDate == endDate {
-              return startDate
-          } else if calendar.compare(dateRange.lowerBound, to: dateRange.upperBound, toGranularity: .day) == .orderedAscending {
-              return "\(startDate) - \(endDate)"
-          } else {
-              return "\(endDate) - \(startDate)"
-          }
-      }
-  }
+        @Environment(\.calendar) var calendar
+        @Binding var selectedAuto: Car
+        @Binding var showModalReservation: Bool
+        @Binding var showSignSuggestModal: Bool
+        @Binding var showDatePicker: Bool
+        @State private var selectedTab: Int = 0
+        @State private var showModalCard: Bool = false
+        @State private var dragOffset: CGSize = .zero
+        @ObservedObject private var viewModel: AutoListViewModel
+    
+        init(
+            selectedAuto: Binding<Car>,
+            showModalReservation: Binding<Bool>,
+            showSignSuggestModal: Binding<Bool>,
+            showDatePicker: Binding<Bool>,
+            dateRange: Binding<ClosedRange<Date>?>
+        ) {
+            self._selectedAuto = selectedAuto
+            self._showModalReservation = showModalReservation
+            self._showSignSuggestModal = showSignSuggestModal
+            self._showDatePicker = showDatePicker
+            self.viewModel = .init(dateRange: dateRange)
+        }
+    
+        var body: some View {
+            VStack {
+                if viewModel.dateRange != nil {
+                    ButtonLikeDateField(
+                        showDatePicker: $showDatePicker,
+                        dateRange: viewModel.dateRange
+                    )
+                    .padding(.horizontal, horizontalPadding)
+                }
+                TabBarView(index: $selectedTab)
+                    .background(
+                        RoundedRectangle(cornerRadius: 20)
+                            .fill(Color(R.color.background))
+                            .ignoresSafeArea(.all)
+                    )
+    
+                TabView(selection: $selectedTab) {
+                    switch selectedTab {
+                    case 1:
+                        ScrollableAutoListView(
+                            carList: viewModel.filterCars(by: .economy),
+                            selectedAuto: $selectedAuto,
+                            showModalCard: $showModalCard,
+                            showModalReservation: $showModalReservation,
+                            showSignSuggestModal: $showSignSuggestModal,
+                            refreshAction: viewModel.fetchCars
+                        )
+                    case 2:
+                        ScrollableAutoListView(
+                            carList: viewModel.filterCars(by: .comfort),
+                            selectedAuto: $selectedAuto,
+                            showModalCard: $showModalCard,
+                            showModalReservation: $showModalReservation,
+                            showSignSuggestModal: $showSignSuggestModal,
+                            refreshAction: viewModel.fetchCars
+                        )
+                    case 3:
+                        ScrollableAutoListView(
+                            carList: viewModel.filterCars(by: .premium),
+                            selectedAuto: $selectedAuto,
+                            showModalCard: $showModalCard,
+                            showModalReservation: $showModalReservation,
+                            showSignSuggestModal: $showSignSuggestModal,
+                            refreshAction: viewModel.fetchCars
+                        )
+                    case 4:
+                        ScrollableAutoListView(
+                            carList: viewModel.filterCars(by: .sedans),
+                            selectedAuto: $selectedAuto,
+                            showModalCard: $showModalCard,
+                            showModalReservation: $showModalReservation,
+                            showSignSuggestModal: $showSignSuggestModal,
+                            refreshAction: viewModel.fetchCars
+                        )
+                    case 5:
+                        ScrollableAutoListView(
+                            carList: viewModel.filterCars(by: .jeeps),
+                            selectedAuto: $selectedAuto,
+                            showModalCard: $showModalCard,
+                            showModalReservation: $showModalReservation,
+                            showSignSuggestModal: $showSignSuggestModal,
+                            refreshAction: viewModel.fetchCars
+                        )
+                    default:
+                        ScrollableAutoListView(
+                            carList: $viewModel.listOfAllCar,
+                            selectedAuto: $selectedAuto,
+                            showModalCard: $showModalCard,
+                            showModalReservation: $showModalReservation,
+                            showSignSuggestModal: $showSignSuggestModal,
+                            refreshAction: viewModel.fetchCars
+                        )
+                    }
+                }
+                .ignoresSafeArea(.container)
+                .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+                .gesture(
+                    DragGesture()
+                        .onEnded { value in
+                            let horizontalAmount = value.translation.width
+                            let verticalAmount = value.translation.height
+    
+                            if abs(horizontalAmount) > abs(verticalAmount) {
+                                if horizontalAmount < -50 {
+                                    withAnimation {
+                                        if selectedTab < AutoListType.allCases.count - 1 {
+                                            selectedTab += 1
+                                        }
+                                    }
+                                } else if horizontalAmount > 50 {
+                                    withAnimation {
+                                        if selectedTab > 0 {
+                                            selectedTab -= 1
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                )
+                .sheet(isPresented: $showModalCard) {
+                    ModalAutoView(
+                        carModel: $selectedAuto,
+                        showModalView: $showModalCard,
+                        showSignSuggestModal: $showSignSuggestModal,
+                        showModalReservation: $showModalReservation
+                    )
+                }
+            }
+            .onAppear {
+                Task {
+                    await viewModel.fetchCars()
+                }
+            }
+            .loadingOverlay(isLoading: $viewModel.isLoading)
+            .background(Color(R.color.bgContainer))
+            .navigationBarBackButtonHidden()
+            .toolbar {
+                CustomToolbar(title: R.string.localizable.carParkScreenTitle)
+            }
+        }
+    
+        func formatDateRange() -> String {
+            guard let dateRange = viewModel.dateRange else {
+                return R.string.localizable.dateTextFieldPlaceholder()
+            }
+    
+            let formatter = DateFormatter()
+            formatter.dateFormat = "dd MMMM yyyy"
+    
+            let startDate = formatter.string(from: dateRange.lowerBound)
+            let endDate = formatter.string(from: dateRange.upperBound)
+    
+            if startDate == endDate {
+                return startDate
+            } else if calendar.compare(dateRange.lowerBound, to: dateRange.upperBound, toGranularity: .day) == .orderedAscending {
+                return "\(startDate) - \(endDate)"
+            } else {
+                return "\(endDate) - \(startDate)"
+            }
+        }
+    }
   ```
 </details>
 
