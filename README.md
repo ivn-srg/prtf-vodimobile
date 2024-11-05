@@ -129,7 +129,6 @@
       private func handleTabSelection(_ tab: TabType) { selectedTab = tab }
   }
   ```
-  
 </details>
 
 <details>
@@ -213,6 +212,7 @@
 
 <details>
   <summary>Список авто по категориям</summary>
+
   ```swift
   struct AutoListView: View {
       @Environment(\.calendar) var calendar
@@ -385,6 +385,7 @@
 
 <details>
   <summary>Экран бронирования авто</summary>
+  
   ```swift
   struct MakeReservationView: View {
       @Binding var showModal: Bool
